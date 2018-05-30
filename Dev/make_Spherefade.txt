@@ -1,0 +1,4 @@
+Membuat SphereFade dengan nama : VRaySphereFade1
+Note:
+    - hanya berlaku jka belum membuat SphereFade
+    - hanya berlaku pada nama VRaySphereFade1

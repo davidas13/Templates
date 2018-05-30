@@ -1,0 +1,2 @@
+Script ini untuk cek dan menonaktifkan
+render element Demi di layer lain.

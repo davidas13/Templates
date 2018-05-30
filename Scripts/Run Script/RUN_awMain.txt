@@ -1,0 +1,6 @@
+Script ini menjalankan button:
+1. set_OptRender_MstrLyr
+2. aw.set_output_btn
+3. Cam_img_plane_fix_btn
+4. disable_DiscoBoots_btn
+Script diatas dijalankan secara bersamaan.
