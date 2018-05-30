@@ -1,12 +1,9 @@
 """
 NOTE:
+    show_information =
+    show_question =
 
-show_information = :  Output Message with MessageDialog
-show_question = :
-show_warning = :
-show_critical = :
-
-With main:
+    With main:
             def main():
                 pass
                 

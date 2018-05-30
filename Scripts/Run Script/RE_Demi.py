@@ -41,4 +41,4 @@ if render_layer != "defaultRenderLayer":
     pm.setAttr("ExtraTex_VRE.enabled", 0)
     
     # print('Edit Attr:\n\t CPS_MM: {}\n\t Demi_MM_VRE: {}\n\t ExtraTex_VRE: {}'.format(pm.getAttr("CPS_MM.enabled"), pm.getAttr("Demi_MM_VRE.enabled"), pm.getAttr("ExtraTex_VRE.enabled")))
-    show_print = 'Edit Attr (Demi Layer):\n    CPS_MM: {}\n    Demi_MM_VRE: {}\n    ExtraTex_VRE: {}'.format(pm.getAttr("CPS_MM.enabled"), pm.getAttr("Demi_MM_VRE.enabled"), pm.getAttr("ExtraTex_VRE.enabled"))
+    show_information = 'Edit Attr (Demi Layer):\n    CPS_MM: {}\n    Demi_MM_VRE: {}\n    ExtraTex_VRE: {}'.format(pm.getAttr("CPS_MM.enabled"), pm.getAttr("Demi_MM_VRE.enabled"), pm.getAttr("ExtraTex_VRE.enabled"))

@@ -1,15 +1,3 @@
-"""
-    NOTE:
-
-    show_print= :  Output Message with MessageDialog
-
-    Alternatif:
-                def main():
-                    pass
-                    
-                if __name__=='__main__':
-                    main()
-"""
 # ----------------------------------------------------------------------
 # Import
 # ----------------------------------------------------------------------
@@ -32,3 +20,5 @@ pm.setAttr("VRaySphereFadeShape1.enabled", 1)
 pm.setAttr("VRaySphereFadeVolume1.falloff", 0.02)
 pm.setAttr("VRaySphereFadeVolume1.emptyColor", 0, 0, 0, type='double3')
 pm.setAttr("VRaySphereFadeVolume1.affectAlpha", 1)
+
+show_information = 'Create VRaySphereFadeShape1\nSuccessfully!'

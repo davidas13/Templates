@@ -30,4 +30,4 @@ print('-> Cam_img_plane_fix_btn')
 aw.disable_DiscoBoots_btn()
 print('-> disable_DiscoBoots_btn')
 
-show_print = 'set_OptRender_MstrLyr\naw.set_output_btn\nCam_img_plane_fix_btn\ndisable_DiscoBoots_btn'
+show_information = 'set_OptRender_MstrLyr\naw.set_output_btn\nCam_img_plane_fix_btn\ndisable_DiscoBoots_btn'
