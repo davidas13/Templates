@@ -7,27 +7,16 @@ reload(aw)
 # ----------------------------------------------------------------------
 # Configuration
 # ----------------------------------------------------------------------
-activate_tooltip = True
 
-TOOLTIP = """
-Script ini menjalankan button:
-1. set_OptRender_MstrLyr
-2. aw.set_output_btn
-3. Cam_img_plane_fix_btn
-4. disable_DiscoBoots_btn
-Script diatas dijalankan secara bersamaan.
-"""
 
 # ----------------------------------------------------------------------
 # Main Script
 # ----------------------------------------------------------------------
-aw.set_GeneralSett_btn()
-print('-> set_OptRender_MstrLyr')
-aw.set_output_btn()
-print('-> aw.set_output_btn')
-aw.Cam_img_plane_fix_btn()
-print('-> Cam_img_plane_fix_btn')
-aw.disable_DiscoBoots_btn()
-print('-> disable_DiscoBoots_btn')
-
-show_information = 'set_OptRender_MstrLyr\naw.set_output_btn\nCam_img_plane_fix_btn\ndisable_DiscoBoots_btn'
+try:
+    aw.set_GeneralSett_btn()
+    aw.set_output_btn()
+    aw.Cam_img_plane_fix_btn()
+    aw.disable_DiscoBoots_btn()
+    QtGui.QMessageBox.information(self, 'Information', 'Run: set_OptRender_MstrLyr\nRun: aw.set_output_btn\nRun: Cam_img_plane_fix_btn\nRun: disable_DiscoBoots_btn')
+except Exception as ex:
+    message = QtGui.QMessageBox.critical(self, 'Error', str(ex))

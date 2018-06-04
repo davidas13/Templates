@@ -1,7 +1,9 @@
 """
-NOTE:
-    show_information =
-    show_question =
+NOTE MessageBox:
+    Show Information: QtGui.QMessageBox.information(self)
+    Show Question: QtGui.QMessageBox.question(self)
+    Show Warning: QtGui.QMessageBox.warning(self)
+    Show Critical: QtGui.QMessageBox.critical(self)
 
     With main:
             def main():
