@@ -1,0 +1,3 @@
+Script ini menjalankan button:
+1. Button Browse (ANB)
+2. Button Run (Ctrl+R)

@@ -36,7 +36,7 @@ try:
         pm.setAttr("ExtraTex_VRE.enabled", 1)
 
         pm.editRenderLayerGlobals(currentRenderLayer='defaultRenderLayer')
-        # pm.setAttr("CPS_MM.enabled", 0)
+        pm.setAttr("CPS_MM.enabled", 1)
         pm.setAttr("Demi_MM_VRE.enabled", 0)
         pm.setAttr("ExtraTex_VRE.enabled", 0)
 
