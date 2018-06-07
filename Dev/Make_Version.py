@@ -15,10 +15,7 @@ NOTE MessageBox:
 # ----------------------------------------------------------------------
 # Import
 # ----------------------------------------------------------------------
-
-# items = (['V00{}'.format(x) for x in range(1,11) if len(str(x)) == 2])
-items = (['V{}'.format(str(x).zfill(3)) for x in range(1,11)])
-print(items)
+import pymel.core as pm
 
 # ----------------------------------------------------------------------
 # Configuration
@@ -28,7 +25,31 @@ print(items)
 # ----------------------------------------------------------------------
 # Main Script
 # ----------------------------------------------------------------------
+items = (['V{}'.format(str(x).zfill(3)) for x in range(1,11)])
+
+item, ok = QtGui.QInputDialog.getItem(self, 'Select Version Layer', 'List Version Layer', items, 0)
+
 maya_path = '<Scene>/<Layer>_V001.exr'
 maya_path_split = maya_path.split('_')
-ver = 'V002'
-print('{}_{}.exr'.format(maya_path_split[0], items[9]))
+if ok and item:
+    # print('{}_{}.exr'.format(maya_path_split[0], item))
+    file_prefix = '{}_{}.exr'.format(maya_path_split[0], item)
+    seL = pm.ls(typ='renderLayer')
+    print(seL)
+    # for x in seL:
+    #     if x != 'defaultRenderLayer':
+    #         pm.editRenderLayerGlobals(currentRenderLayer=x)
+    #         pm.editRenderLayerAdjustment ("defaultRenderGlobals.imageFilePrefix", r=1)
+    #         print(x)
+    curRL = pm.editRenderLayerGlobals(query=True, currentRenderLayer=True)
+    if curRL != 'defaultRenderLayer':
+        pm.editRenderLayerAdjustment ("defaultRenderGlobals.imageFilePrefix")
+        pm.setAttr("defaultRenderGlobals.imageFilePrefix", file_prefix)
+    else:
+        for x in seL:
+            if x != 'defaultRenderLayer':
+                pm.editRenderLayerGlobals(currentRenderLayer=x)
+                pm.editRenderLayerAdjustment ("defaultRenderGlobals.imageFilePrefix", r=1)
+                print(x)
+        pm.setAttr("defaultRenderGlobals.imageFilePrefix", file_prefix)
+        pm.editRenderLayerGlobals(currentRenderLayer='defaultRenderLayer')
