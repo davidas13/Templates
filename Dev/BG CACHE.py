@@ -30,7 +30,7 @@ path_lc = os.path.join(path_join, 'LC_{}.vrlmap'.format(path_split[-2])).replace
 if os.path.exists(path_join):
     try:
         bgRL = pm.editRenderLayerGlobals(currentRenderLayer='BG_RL')
-        if bgRL != 'defaultRenderLayer' and 'BG_RL' in lisRL and 'BG_RL_CACHE' not in lisRL:
+        if 'BG_RL' in lisRL and 'BG_RL_CACHE' not in lisRL:
             pm.editRenderLayerAdjustment('vraySettings.mode')
             pm.editRenderLayerAdjustment('vraySettings.lc_autoSaveFile')
             pm.editRenderLayerAdjustment('vraySettings.lc_fileName')

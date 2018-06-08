@@ -1,0 +1,2 @@
+Script ini membuat render layer BG_RL_CACHE
+digunakan untuk membuat BG Ligth Cache.
