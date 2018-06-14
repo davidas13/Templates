@@ -20,42 +20,31 @@ import pymel.core as pm
 # ----------------------------------------------------------------------
 # Configuration
 # ----------------------------------------------------------------------
-
+find_word = 'V0'
+end_word = 4
 
 # ----------------------------------------------------------------------
 # Main Script
 # ----------------------------------------------------------------------
 items = (['V{}'.format(str(x).zfill(3)) for x in range(1,11)])
-
 item, ok = QtGui.QInputDialog.getItem(self, 'Select Version Layer', 'List Version Layer', items, 0)
 
-fnp_path = pm.getAttr("vraySettings.fileNamePrefix")
-fnp_path_split = fnp_path.split('_')
-fnp_path_ver = fnp_path_split[-1].split('/')
+cur_prefix = pm.getAttr("vraySettings.fileNamePrefix")
+ind_prefix = cur_prefix.find(find_word)
+rep_prefix = cur_prefix.replace(cur_prefix[ind_prefix:ind_prefix + end_word], item)
+print(cur_prefix[ind_prefix + end_word])
 
-print(fnp_path_split)       #[u'EP202B/SH049.00/<Layer>', u'V001/<Layer>']
-print(fnp_path_ver)     # V001
-
-#EP202B/SH049.00/<Layer>_V001/<Layer>
-if ok and item:
-    # print('{}_{}.exr'.format(fnp_path_split[0], item))
-    file_prefix = '{}_{}/{}'.format(fnp_path_split[0], item, fnp_path_ver[-1])
-    # print(file_prefix)
-    seL = pm.ls(typ='renderLayer', rn=1)
-    # print(seL)
-    # for x in seL:
-    #     if x != 'defaultRenderLayer':
-    #         pm.editRenderLayerGlobals(currentRenderLayer=x)
-    #         pm.editRenderLayerAdjustment ("vraySettings.fileNamePrefix", r=1)
-    #         print(x)
+if ok and item and cur_prefix[ind_prefix + end_word] == '/':
     curRL = pm.editRenderLayerGlobals(query=True, currentRenderLayer=True)
     if curRL != 'defaultRenderLayer':
         pm.editRenderLayerAdjustment ("vraySettings.fileNamePrefix")
-        pm.setAttr("vraySettings.fileNamePrefix", file_prefix, type='string')
+        pm.setAttr("vraySettings.fileNamePrefix", rep_prefix, type='string')
     else:
         for x in pm.ls(typ='renderLayer'):
             if x not in seL and x != 'defaultRenderLayer':
                 pm.editRenderLayerGlobals(currentRenderLayer=x)
                 pm.editRenderLayerAdjustment ("vraySettings.fileNamePrefix", r=1)
-        #pm.setAttr("vraySettings.fileNamePrefix", file_prefix)
-        #pm.editRenderLayerGlobals(currentRenderLayer='defaultRenderLayer')
+        pm.setAttr("vraySettings.fileNamePrefix", rep_prefix, type='string')
+        pm.editRenderLayerGlobals(currentRenderLayer='defaultRenderLayer')
+else:
+    print('{} Not Found!'.format(find_word))
