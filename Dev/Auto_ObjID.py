@@ -45,12 +45,10 @@ if cur_rl != 'defaultRenderLayer':
                 pm.editRenderLayerAdjustment(x.objectID)
                 pm.setAttr(x.objectIDEnabled, 1)
                 pm.setAttr(x.objectID, int('200' + str(ob_sel.index(x))))
-                print([i for i in ])
-
                 pm.editRenderLayerAdjustment("vraySettings.renderMaskMode")
                 pm.setAttr("vraySettings.renderMaskMode", 3)
                 pm.editRenderLayerAdjustment("vraySettings.renderMaskObjectIDs")
-                pm.setAttr('vraySettings.renderMaskObjectIDs', 2000, type="string")
+                pm.setAttr('vraySettings.renderMaskObjectIDs', ', '.join(map(str, [int('2' + str(x).zfill(3)) for x in range(len(ob_sel))])), type="string")
 
         except Exception as ex:
             print('\t{}: {}'.format(x, ex))
