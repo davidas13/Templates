@@ -36,11 +36,8 @@ if cur_rl != 'defaultRenderLayer':
     for x in sel:
         try:
             ob_sel.append(x)
-            if type(er) is list:
-                for x in er:
-                    print(x)
-                    pm.editRenderLayerAdjustment(x, r=1)
-            else:
+            if str(pm.getAttr(x.objectID)) == str(0):
+                print(x)
                 pm.editRenderLayerAdjustment(x.objectIDEnabled)
                 pm.editRenderLayerAdjustment(x.objectID)
                 pm.setAttr(x.objectIDEnabled, 1)
@@ -49,6 +46,10 @@ if cur_rl != 'defaultRenderLayer':
                 pm.setAttr("vraySettings.renderMaskMode", 3)
                 pm.editRenderLayerAdjustment("vraySettings.renderMaskObjectIDs")
                 pm.setAttr('vraySettings.renderMaskObjectIDs', ', '.join(map(str, [int('2' + str(x).zfill(3)) for x in range(len(ob_sel))])), type="string")
-
+            else:
+                pm.editRenderLayerAdjustment(x.objectIDEnabled, r=1)
+                pm.editRenderLayerAdjustment(x.objectID, r=1)
+                pm.editRenderLayerAdjustment("vraySettings.renderMaskMode", r=1)
+                pm.editRenderLayerAdjustment("vraySettings.renderMaskObjectIDs", r=1)
         except Exception as ex:
             print('\t{}: {}'.format(x, ex))
