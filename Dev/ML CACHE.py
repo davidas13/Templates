@@ -29,7 +29,7 @@ path_lc = os.path.join(path_join, 'LC_{}.vrlmap'.format(path_split[-2])).replace
 
 if os.path.exists(path_join):
     dRL = pm.editRenderLayerGlobals(currentRenderLayer='defaultRenderLayer')
-    if 'M_RL_CACHE' not in lisRL:
+    if 'defaultRenderLayer' in lisRL and 'M_RL_CACHE' not in lisRL:
         pm.duplicate('defaultRenderLayer', n='M_RL_CACHE', ic=1)
         pm.editRenderLayerGlobals(currentRenderLayer='M_RL_CACHE')
 
@@ -48,14 +48,13 @@ if os.path.exists(path_join):
         pm.setAttr('vraySettings.globopt_gi_dontRenderImage', 0)
         pm.setAttr('vraySettings.mode', 2)
 
+        pm.setAttr('vraySettings.lc_fileName', path_lc, type='string')
+        #setAttr -type "string" vraySettings.lc_fileName "33";
+
         QtGui.QMessageBox.information(self, 'Information', 'Membuat ML CACHE\nBerhasil!')
     else:
-        # pm.editRenderLayerGlobals(currentRenderLayer='M_RL_CACHE')
-        # pm.editRenderLayerAdjustment('vraySettings.mode', r=1)
-        # pm.editRenderLayerAdjustment('vraySettings.lc_autoSaveFile', r=1)
-        # pm.editRenderLayerAdjustment('vraySettings.lc_fileName', r=1)
-        # pm.editRenderLayerAdjustment('vraySettings.globopt_gi_dontRenderImage', r=1)
-
+        pm.setAttr('vraySettings.lc_fileName', '', type='string')
+        pm.setAttr('vraySettings.mode', 0)
         pm.editRenderLayerGlobals(currentRenderLayer='defaultRenderLayer')
         pm.delete('M_RL_CACHE')
 

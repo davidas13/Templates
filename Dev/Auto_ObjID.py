@@ -37,7 +37,6 @@ if cur_rl != 'defaultRenderLayer':
         try:
             ob_sel.append(x)
             if str(pm.getAttr(x.objectID)) == str(0):
-                print(x)
                 pm.editRenderLayerAdjustment(x.objectIDEnabled)
                 pm.editRenderLayerAdjustment(x.objectID)
                 pm.setAttr(x.objectIDEnabled, 1)
