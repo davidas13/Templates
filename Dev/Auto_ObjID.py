@@ -17,8 +17,6 @@ NOTE MessageBox:
 # ----------------------------------------------------------------------
 import pymel.core as pm
 
-
-
 # ----------------------------------------------------------------------
 # Configuration
 # ----------------------------------------------------------------------
@@ -36,18 +34,18 @@ if cur_rl != 'defaultRenderLayer':
     for x in sel:
         try:
             ob_sel.append(x)
-            if str(pm.getAttr(x.objectID)) == str(0):
-                pm.editRenderLayerAdjustment(x.objectIDEnabled)
-                pm.editRenderLayerAdjustment(x.objectID)
-                pm.setAttr(x.objectIDEnabled, 1)
-                pm.setAttr(x.objectID, int('200' + str(ob_sel.index(x))))
+            if str(pm.getAttr(x.vrayObjectID)) == str(0):
+                pm.editRenderLayerAdjustment(x.vrayObjectID)
+                pm.editRenderLayerAdjustment(x.vrayObjectID)
+                pm.setAttr(x.vrayObjectID, 1)
+                pm.setAttr(x.vrayObjectID, int('200' + str(ob_sel.index(x))))
                 pm.editRenderLayerAdjustment("vraySettings.renderMaskMode")
                 pm.setAttr("vraySettings.renderMaskMode", 3)
                 pm.editRenderLayerAdjustment("vraySettings.renderMaskObjectIDs")
                 pm.setAttr('vraySettings.renderMaskObjectIDs', ', '.join(map(str, [int('2' + str(x).zfill(3)) for x in range(len(ob_sel))])), type="string")
             else:
-                pm.editRenderLayerAdjustment(x.objectIDEnabled, r=1)
-                pm.editRenderLayerAdjustment(x.objectID, r=1)
+                pm.editRenderLayerAdjustment(x.vrayObjectID, r=1)
+                pm.editRenderLayerAdjustment(x.vrayObjectID, r=1)
                 pm.editRenderLayerAdjustment("vraySettings.renderMaskMode", r=1)
                 pm.editRenderLayerAdjustment("vraySettings.renderMaskObjectIDs", r=1)
         except Exception as ex:

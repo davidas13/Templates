@@ -52,6 +52,7 @@ def get_owner(fname):
 # Detection Dir File
 if spath[0] == 'C:':
     item_cb.insert(4,'Backup & Open (J)')
+    item_cb.insert(1,'Open (J)')
     BACKUP_FILE = os.path.join(BACKUP_PATH, '/'.join(spath[num_J:])) #'C:/Users/{}/Documents/BackupSH/{}'.format(username, '/'.join(spath[num_J:]))
     DIR = 'J:/Productions/{}'.format('/'.join(spath[num_J:]))
     print('FROM C:')
@@ -89,6 +90,7 @@ try:
                 
             if os.path.isfile(DIR):
                 pm.sysFile(DIR, cp=nam)
+                pm.sysFile(SC_PATH, cp=DIR)
                 print(item, DIR)
         elif item == 'Backup (J) This Scene (No Save)':
             if os.path.isfile(DIR):
@@ -109,6 +111,9 @@ try:
                 print(item, DIR)
                 cmds.file(new=1, f=1)
                 cmds.file(DIR, o=1 )
+        elif item == 'Open (J)' and spath[0] == 'C':
+                cmds.file(new=1, f=1)
+                cmds.file(DIR, o=1 )
         else:
             print('Not Work!')
     else:
@@ -116,5 +121,4 @@ try:
 except NameError:
     print('File has no Path!')
 except WindowsError:
-    
-
+    pass
